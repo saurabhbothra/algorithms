@@ -1,5 +1,7 @@
 package com.algorithms.practice.mathematics;
 
+// Given a integer n, find whether n is a palindrome number.
+
 public class PalindromeNumber {
 	
 	// iterative solution, taking reverse of the number.

@@ -1,5 +1,7 @@
 package com.algorithms.practice.mathematics;
 
+// Given a integer n, find the factorial of n.
+
 public class Factorial {
 	
 	// iterative solution.
@@ -25,7 +27,7 @@ public class Factorial {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Factorial of the number is " + factorial(5));
-		System.out.println("(Recursive) Factorial of the number is " + factorialRecursive(5));
+		System.out.println("(Recursive) Factorial of the number is " + factorialRecursive(10));
 	}
 
 }

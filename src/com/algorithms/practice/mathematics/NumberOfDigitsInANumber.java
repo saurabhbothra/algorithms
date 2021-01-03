@@ -1,5 +1,7 @@
 package com.algorithms.practice.mathematics;
 
+// Given a integer n, find the number of digits in n.
+
 public class NumberOfDigitsInANumber {
 	
 	// logarithmic solution only for positive numbers.
