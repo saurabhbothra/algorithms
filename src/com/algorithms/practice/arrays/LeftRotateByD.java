@@ -61,13 +61,13 @@ public class LeftRotateByD {
 		// TODO Auto-generated method stub
 		int[] arr = { 10, 5, 30, 15 };
 		leftRotateByD(arr, 3);
-		System.out.println("The array after left rotation by one looks like: " + Arrays.toString(arr));
+		System.out.println("The array after left rotation by d looks like: " + Arrays.toString(arr));
 		int[] arr1 = { 10, 5, 30, 15 };
 		leftRotateByDApproach2(arr1, 3);
-		System.out.println("The array after left rotation by one looks like: " + Arrays.toString(arr1));
+		System.out.println("The array after left rotation by d looks like: " + Arrays.toString(arr1));
 		int[] arr2 = { 10, 5, 30, 15 };
 		leftRotateByDApproach3(arr2, 3);
-		System.out.println("The array after left rotation by one looks like: " + Arrays.toString(arr2));
+		System.out.println("The array after left rotation by d looks like: " + Arrays.toString(arr2));
 	}
 
 }
