@@ -6,7 +6,7 @@ public class RightRotateArrayByK {
 
 	// Given an array nums, rotate the array to the right by k steps, where k is
 	// non-negative.
-	// 1 <= nums.length <= 105
+	// 1 <= nums.length <= 10^5
 
 	// approach 1, theta(nk) extra space, naive solution.
 	public static void rightRotateByK(int[] nums, int k) {
