@@ -17,7 +17,7 @@ public class MaximumSubarraySum {
 			}
 			maxSum = Math.max(maxSum, sum);
 		}
-		return Math.max(maxSum, sum);
+		return maxSum;
 	}
 
 	public static void main(String[] args) {
