@@ -7,6 +7,24 @@ public class CountDistinctElements {
 
 	// Given an array of numbers, find count of distinct elements.
 
+	// naive solution.
+	public static int countDistinctElementsNaive(int[] arr) {
+		int count = 0;
+		for (int i = 0; i < arr.length; i++) {
+			boolean flag = false;
+			for (int j = 0; j < i; j++) {
+				if (arr[j] == arr[i]) {
+					flag = true;
+					break;
+				}
+			}
+			if (!flag) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 	// efficient solution.
 	public static int countDistinctElements(int[] arr) {
 		Set<Integer> s = new HashSet<>();
