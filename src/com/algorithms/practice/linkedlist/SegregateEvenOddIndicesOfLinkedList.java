@@ -1,6 +1,6 @@
 package com.algorithms.practice.linkedlist;
 
-public class SegregateEvenOddNodesOfLinkedList {
+public class SegregateEvenOddIndicesOfLinkedList {
 
 	// Given the head of a singly linked list, group all the nodes with odd indices
 	// together followed by the nodes with even indices, and return the reordered
