@@ -32,7 +32,7 @@ public class KStacksInAnArray {
 
 	// push item to given stack number.
 	public void push(int item, int stackNumber) {
-		if (stackNumber < 0 || stackNumber > k) {
+		if (stackNumber <= 0 || stackNumber > k) {
 			System.out.println("Invalid stack number.");
 			return;
 		}
@@ -50,7 +50,7 @@ public class KStacksInAnArray {
 
 	// removes and returns the top item of stack number.
 	public int pop(int stackNumber) {
-		if (stackNumber < 0 || stackNumber > k) {
+		if (stackNumber <= 0 || stackNumber > k) {
 			System.out.println("Invalid stack number.");
 			return -1;
 		}
@@ -71,7 +71,7 @@ public class KStacksInAnArray {
 
 	// returns the top item of stack number.
 	public int peek(int stackNumber) {
-		if (stackNumber < 0 || stackNumber > k) {
+		if (stackNumber <= 0 || stackNumber > k) {
 			System.out.println("Invalid stack number.");
 			return -1;
 		}
@@ -84,7 +84,7 @@ public class KStacksInAnArray {
 
 	// checks whether stack number is empty or not.
 	public boolean isEmpty(int stackNumber) {
-		if (stackNumber < 0 || stackNumber > k) {
+		if (stackNumber <= 0 || stackNumber > k) {
 			System.out.println("Invalid stack number.");
 			return false;
 		}
@@ -96,7 +96,7 @@ public class KStacksInAnArray {
 
 	// returns the size of the stack number.
 	public int size(int stackNumber) {
-		if (stackNumber < 0 || stackNumber > k) {
+		if (stackNumber <= 0 || stackNumber > k) {
 			System.out.println("Invalid stack number.");
 			return -1;
 		}
