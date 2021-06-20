@@ -34,7 +34,7 @@ public class LargestRectangleAreaInHistogram {
 		return maxArea;
 	}
 
-	// efficient solution.
+	// best efficient solution.
 	public static int largestRectangleArea(int[] heights) {
 		int maxArea = Integer.MIN_VALUE;
 		ArrayDeque<int[]> st = new ArrayDeque<>();
