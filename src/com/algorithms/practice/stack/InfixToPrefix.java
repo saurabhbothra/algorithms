@@ -26,7 +26,7 @@ public class InfixToPrefix {
 				}
 				st.pop();
 			} else {
-				while (!st.isEmpty() && precedence(st.peek()) >= precedence) {
+				while (!st.isEmpty() && precedence(st.peek()) > precedence) {
 					char poppedOperator = st.pop();
 					postfixExpression.append(poppedOperator);
 				}
@@ -62,7 +62,7 @@ public class InfixToPrefix {
 		// TODO Auto-generated method stub
 		System.out.println("The prefix expression for given infix string is: " + infoxToPrefix("a*b+c/d"));
 		System.out.println("The prefix expression for given infix string is: " + infoxToPrefix("(a-b/c)*(a/k-l)"));
-		System.out.println("The prefix expression for given infix string is: " + infoxToPrefix("x^y^z"));
+		System.out.println("The prefix expression for given infix string is: " + infoxToPrefix("x+y/z-w*u"));
 		System.out.println("The prefix expression for given infix string is: " + infoxToPrefix("(x+y)*(z+w)"));
 	}
 
