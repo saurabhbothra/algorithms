@@ -24,8 +24,10 @@ public class StackUsingOneQueue {
 	public void push(int x) {
 		this.top = x;
         this.q1.offer(x);
-        while(this.q1.peek() != x) {
+        int size = this.q1.size();
+        while(size != 1) {
             this.q1.offer(this.q1.poll());
+            size--;
         }
 	}
 
