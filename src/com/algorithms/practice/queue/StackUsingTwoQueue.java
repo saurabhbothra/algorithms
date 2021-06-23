@@ -3,6 +3,8 @@ package com.algorithms.practice.queue;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+// push - O(1) and pop - O(n)
+
 public class StackUsingTwoQueue {
 
 	// Implement a last in first out (LIFO) stack using only two queues. The
