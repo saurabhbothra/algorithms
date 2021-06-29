@@ -2,7 +2,7 @@ package com.algorithms.practice.tree;
 
 public class PreorderTraversal {
 
-	// Implement preorder traversal of binary tree. (root -> left subtree -> right
+	// Implement pre order traversal of binary tree. (root -> left subtree -> right
 	// subtree)
 
 	// efficient solution.
