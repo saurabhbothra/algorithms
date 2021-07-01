@@ -39,15 +39,17 @@ public class RightViewOfBinaryTree {
 	public List<Integer> rightView(TreeNode root) {
 		List<Integer> rightViewList = new ArrayList<>();
 		if (root == null) {
-			return result;
+			return rightViewList;
 		}
 		Queue<TreeNode> q = new ArrayDeque<>();
 		q.add(root);
 		while (!q.isEmpty()) {
 			int count = q.size();
-			rightViewList.add(q.peek().data);
 			for (int i = 0; i < count; i++) {
 				TreeNode poppedNode = q.poll();
+				if (i == count - 1) {
+					rightViewList.add(poppedNode.data);
+				}
 				if (poppedNode.left != null) {
 					q.offer(poppedNode.left);
 				}
