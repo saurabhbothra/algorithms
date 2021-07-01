@@ -38,7 +38,7 @@ public class LeftViewOfBinaryTree {
 	public List<Integer> leftView(TreeNode root) {
 		List<Integer> leftViewList = new ArrayList<>();
 		if (root == null) {
-			return result;
+			return leftViewList;
 		}
 		Queue<TreeNode> q = new ArrayDeque<>();
 		q.add(root);
