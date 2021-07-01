@@ -39,7 +39,7 @@ public class RightViewOfBinaryTree {
 	public List<Integer> rightView(TreeNode root) {
 		List<Integer> rightViewList = new ArrayList<>();
 		if (root == null) {
-			return rightViewList;
+			return rightViewList; 
 		}
 		Queue<TreeNode> q = new ArrayDeque<>();
 		q.add(root);
