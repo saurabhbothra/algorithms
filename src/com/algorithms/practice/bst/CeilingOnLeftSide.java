@@ -14,7 +14,7 @@ public class CeilingOnLeftSide {
 		List<Integer> result = new ArrayList<>();
 		TreeSet<Integer> tset = new TreeSet<>();
 		for (int i = 0; i < arr.length; i++) {
-			Integer ceilingOnLeft = tset.higher(arr[i]);
+			Integer ceilingOnLeft = tset.ceiling(arr[i]);
 			if (ceilingOnLeft == null) {
 				result.add(-1);
 			} else {
