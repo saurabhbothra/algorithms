@@ -25,9 +25,26 @@ public class CeilingOnLeftSide {
 		return result;
 	}
 
+	// naive solution.
+	public static List<Integer> findCeilingNaive(int[] arr) {
+		List<Integer> result = new ArrayList<>();
+		for (int i = 0; i < arr.length; i++) {
+			int ceiling = -1;
+			for (int j = 0; j < i; j++) {
+				int diff = arr[j] - arr[i];
+				if (diff >= 0) {
+					ceiling = (ceiling == -1) ? arr[j] : Math.min(arr[j], ceiling);
+				}
+			}
+			result.add(ceiling);
+		}
+		return result;
+	}
+
 	public static void main(String[] args) {
 		int[] arr = { 2, 8, 30, 15, 25, 12 };
-		List<Integer> result = findCeiling(arr);
+		int[] arr1 = { 6, 18, 4, 5 };
+		List<Integer> result = findCeiling(arr1);
 		for (Integer i : result) {
 			System.out.print(i + " ");
 		}
