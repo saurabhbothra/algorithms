@@ -74,14 +74,14 @@ public class KthSmallestInBst {
 	}
 
 	// efficient solution.
-	public int kthSmallestIterative(OptimizedTreeNode root, int k) {
+	public int kthSmallestEfficient(OptimizedTreeNode root, int k) {
 		if (k == root.leftCount + 1) {
 			return root.data;
 		}
 		if (k < root.leftCount + 1) {
-			return kthSmallestIterative(root, k);
+			return kthSmallestEfficient(root, k);
 		}
-		return kthSmallestIterative(root, k - (root.leftCount + 1));
+		return kthSmallestEfficient(root, k - (root.leftCount + 1));
 	}
 
 	// modified iterative insert operation in bst.
