@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 
 import com.algorithms.practice.tree.TreeNode;
 
-public class kthSmallestInBst {
+public class KthSmallestInBst {
 
 	// Given the root of a binary search tree, and an integer k, return the kth
 	// (1-indexed) smallest element in the tree.
@@ -136,10 +136,6 @@ public class kthSmallestInBst {
 			root = root.left;
 		}
 		return root.data;
-	}
-
-	public static void main(String[] args) {
-
 	}
 
 }
