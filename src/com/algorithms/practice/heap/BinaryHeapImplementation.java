@@ -118,6 +118,16 @@ public class BinaryHeapImplementation {
 		this.extractMin();
 	}
 
+	// build heap operation.
+	public void buildHeap() {
+		if (this.size <= 1) {
+			return;
+		}
+		for (int i = (this.size - 2) / 2; i >= 0; i--) {
+			this.minHeapify(i);
+		}
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		BinaryHeapImplementation minHeap = new BinaryHeapImplementation(10);
