@@ -35,5 +35,4 @@ public class SortKSortedArray {
 		Integer[] resultArr = result.toArray(new Integer[result.size()]);
 		System.out.println("The sorted array is: " + Arrays.toString(resultArr));
 	}
-
 }
