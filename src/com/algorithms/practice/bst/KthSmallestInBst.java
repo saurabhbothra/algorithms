@@ -79,9 +79,9 @@ public class KthSmallestInBst {
 			return root.data;
 		}
 		if (k < root.leftCount + 1) {
-			return kthSmallestEfficient(root, k);
+			return kthSmallestEfficient(root.left, k);
 		}
-		return kthSmallestEfficient(root, k - (root.leftCount + 1));
+		return kthSmallestEfficient(root.right, k - (root.leftCount + 1));
 	}
 
 	// modified iterative insert operation in bst.
