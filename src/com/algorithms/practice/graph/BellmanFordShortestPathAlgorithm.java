@@ -34,6 +34,22 @@ public class BellmanFordShortestPathAlgorithm {
 				}
 			}
 		}
+
+		for (int j = 0; j < V; j++) {
+			List<List<Integer>> childs = adj.get(j);
+			for (List<Integer> nodeDetails : childs) {
+				int node = nodeDetails.get(0);
+				int weight = nodeDetails.get(1);
+				if (distances[j] == Integer.MAX_VALUE) {
+					continue;
+				}
+				if (distances[node] > distances[j] + weight) {
+					System.out.println("This graph contains negative weight cycles.");
+					return null;
+				}
+			}
+		}
+
 		return distances;
 	}
 
