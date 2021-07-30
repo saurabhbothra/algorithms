@@ -39,13 +39,13 @@ public class ArticulationPoint {
 				children++;
 				parent[node] = source;
 				dfsRec(adj, visited, parent, ap, discoveryTimes, lowValues, timer, node);
+				lowValues[source] = Math.min(lowValues[source], lowValues[node]);
 				if (parent[source] == -1 && children > 1) {
 					ap[source] = true;
 				}
 				if (parent[source] != -1 && lowValues[node] >= discoveryTimes[source]) {
 					ap[source] = true;
 				}
-				lowValues[source] = Math.min(lowValues[source], lowValues[node]);
 			} else if (visited[node] && parent[source] != node) {
 				lowValues[source] = Math.min(lowValues[source], discoveryTimes[node]);
 			}
