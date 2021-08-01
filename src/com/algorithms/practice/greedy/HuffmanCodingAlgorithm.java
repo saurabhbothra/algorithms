@@ -1,7 +1,5 @@
 package com.algorithms.practice.greedy;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.PriorityQueue;
 
 public class HuffmanCodingAlgorithm {
