@@ -58,18 +58,13 @@ public class NQueenProblem {
 		if (r == n || c == n) {
 			return false;
 		}
-		for (int i = 0; i < n; i++) {
-			if (path[r][i] == 1) {
-				return false;
-			}
+		for (int i = 0; i < r; i++) {
 			if (path[i][c] == 1) {
 				return false;
 			}
 		}
 		int ru = r - 1;
 		int cu = c - 1;
-		int rb = r + 1;
-		int cb = c + 1;
 		while (ru >= 0 && cu >= 0) {
 			if (path[ru][cu] == 1) {
 				return false;
@@ -77,30 +72,14 @@ public class NQueenProblem {
 			ru = ru - 1;
 			cu = cu - 1;
 		}
-		while (rb < n && cb < n) {
-			if (path[rb][cb] == 1) {
-				return false;
-			}
-			rb = rb + 1;
-			cb = cb + 1;
-		}
 		ru = r - 1;
 		cu = c + 1;
-		rb = r + 1;
-		cb = c - 1;
 		while (ru >= 0 && cu < n) {
 			if (path[ru][cu] == 1) {
 				return false;
 			}
 			ru = ru - 1;
 			cu = cu + 1;
-		}
-		while (rb < n && cb >= 0) {
-			if (path[rb][cb] == 1) {
-				return false;
-			}
-			rb = rb + 1;
-			cb = cb - 1;
 		}
 		return true;
 	}
