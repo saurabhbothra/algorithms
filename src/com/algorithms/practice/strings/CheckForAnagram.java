@@ -23,6 +23,8 @@ public class CheckForAnagram {
 	}
 
 	// efficient solution.
+	// you should use a hash table if the string contains unicode characters as the
+	// array size would be very large in such a case.
 	public static boolean isAnagram(String s, String t) {
 		if (s.length() != t.length()) {
 			return false;
