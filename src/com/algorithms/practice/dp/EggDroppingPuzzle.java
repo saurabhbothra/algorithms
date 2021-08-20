@@ -69,7 +69,23 @@ public class EggDroppingPuzzle {
 
 	// tabulation.
 	public int eggDropTabulation(int n, int k) {
-		return 0;
+		int[][] dp = new int[k + 1][n + 1];
+		for (int i = 1; i <= n; i++) {
+			dp[1][i] = 1;
+		}
+		for (int i = 2; i <= k; i++) {
+			dp[i][1] = i;
+		}
+		for (int i = 2; i <= k; i++) {
+			for (int j = 2; j <= n; j++) {
+				int minMoves = Integer.MAX_VALUE;
+				for (int floor = 1; floor <= i; floor++) {
+					minMoves = Math.min(minMoves, Math.max(dp[i - floor][j], dp[floor - 1][j - 1]));
+				}
+				dp[i][j] = minMoves + 1;
+			}
+		}
+		return dp[k][n];
 	}
 
 	public static void main(String[] args) {
