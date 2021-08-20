@@ -15,7 +15,6 @@ public class TwoSumLessThanK {
 		int j = nums.length - 1;
 		int result = -1;
 		while (i < j) {
-			int complement = k - i;
 			if (nums[i] + nums[j] < k) {
 				result = Math.max(result, nums[i] + nums[j]);
 				i++;
