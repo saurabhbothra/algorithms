@@ -24,17 +24,10 @@ public class HouseRobber {
 		if (n == 0) {
 			return nums[0];
 		}
-		int maxSum = Integer.MIN_VALUE;
-		for (int i = n - 2; i >= 0; i--) {
-			int subResult = robRec(nums, i);
-			maxSum = Math.max(subResult, maxSum);
+		if (n < 0) {
+			return 0;
 		}
-		if (maxSum == Integer.MIN_VALUE) {
-			maxSum = nums[n];
-		} else {
-			maxSum += nums[n];
-		}
-		return Math.max(maxSum, robRec(nums, n - 1));
+		return Math.max(nums[n] + robRec(nums, n - 2), robRec(nums, n - 1));
 	}
 
 	// memoization.
@@ -47,18 +40,11 @@ public class HouseRobber {
 		if (n == 0) {
 			memo[n] = nums[0];
 		}
+		if (n < 0) {
+			return 0;
+		}
 		if (memo[n] == null) {
-			int maxSum = Integer.MIN_VALUE;
-			for (int i = n - 2; i >= 0; i--) {
-				int subResult = robRec(nums, i, memo);
-				maxSum = Math.max(subResult, maxSum);
-			}
-			if (maxSum == Integer.MIN_VALUE) {
-				maxSum = nums[n];
-			} else {
-				maxSum += nums[n];
-			}
-			memo[n] = Math.max(maxSum, robRec(nums, n - 1, memo));
+			memo[n] = Math.max(nums[n] + robRec(nums, n - 2, memo), robRec(nums, n - 1, memo));
 		}
 		return memo[n];
 	}
