@@ -93,7 +93,7 @@ public class Trie {
 	}
 
 	private boolean isSafe(TrieNode node) {
-		for (int i = 0; i < 25; i++) {
+		for (int i = 0; i < 26; i++) {
 			if (node.childs[i] != null) {
 				return false;
 			}
