@@ -51,10 +51,35 @@ public class MeetingRooms2 {
 		return pq.size();
 	}
 
+	// efficient solution, using chronological ordering.
+	public static int minMeetingRoomsChrono(int[][] intervals) {
+		int[] start = new int[intervals.length];
+		int[] end = new int[intervals.length];
+		for (int i = 0; i < intervals.length; i++) {
+			start[i] = intervals[i][0];
+			end[i] = intervals[i][1];
+		}
+		Arrays.sort(start);
+		Arrays.sort(end);
+		int count = 0;
+		int i = 0;
+		int j = 0;
+		while (i < intervals.length) {
+			if (start[i] < end[j]) {
+				count++;
+			} else {
+				j++;
+			}
+			i++;
+		}
+		return count;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[][] intervals = { { 0, 30 }, { 5, 10 }, { 15, 20 } };
 		System.out.println("The minimum number of conference rooms required is: " + minMeetingRooms(intervals));
+		System.out.println("The minimum number of conference rooms required is: " + minMeetingRoomsChrono(intervals));
 	}
 
 }
