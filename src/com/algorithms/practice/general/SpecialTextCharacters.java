@@ -1,11 +1,19 @@
-package com.algorithms.practice;
+package com.algorithms.practice.general;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class demo {
+public class SpecialTextCharacters {
 
-	public static int getNumberOfDigits(String s) {
+	// A string consists of '[', ']', '(', ')', '?' as characters and we need to
+	// split string into two halves in such a way that the two string are perfectly
+	// balanced. '?' acts as joker if it exists in that half, which can be used in
+	// place of other characters to make that half balanced.
+
+	// Return the total number of splits that is possible.
+
+	// efficient solution.
+	public static int getSplits(String s) {
 		Map<Character, Integer> hmap = new HashMap<>();
 		Map<Character, Integer> leftMap = new HashMap<>();
 		for (int i = 0; i < s.length(); i++) {
@@ -48,7 +56,7 @@ public class demo {
 		if (value == joker) {
 			return true;
 		}
-		if(joker > value && (joker - value) % 2 == 0) {
+		if (joker > value && (joker - value) % 2 == 0) {
 			return true;
 		}
 		if (openSquare - closeSquare == 0 && openRound - closeRound == 0 && joker % 2 == 0) {
@@ -61,7 +69,8 @@ public class demo {
 		// TODO Auto-generated method stub
 		String s = "))?)?)?))?())()(??(?((())(?)?())((((()(?";
 		String s1 = "[(?][??[";
-		System.out.println(getNumberOfDigits(s));
-		System.out.println(getNumberOfDigits(s1));
+		System.out.println(getSplits(s));
+		System.out.println(getSplits(s1));
 	}
+
 }
