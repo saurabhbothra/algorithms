@@ -16,7 +16,7 @@ public class MergeTwoBinaryTrees {
 
 	// Note: The merging process must start from the root nodes of both trees.
 
-	// efficient solution.
+	// efficient solution, by creating new node.
 	public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
 		return mergeRec(root1, root2);
 	}
@@ -36,6 +36,24 @@ public class MergeTwoBinaryTrees {
 		root.left = mergeRec((root1 == null) ? null : root1.left, (root2 == null) ? null : root2.left);
 		root.right = mergeRec((root1 == null) ? null : root1.right, (root2 == null) ? null : root2.right);
 		return root;
+	}
+
+	// efficient solution using existing reference.
+	public TreeNode mergeTreesEff(TreeNode root1, TreeNode root2) {
+		return mergeRecEff(root1, root2);
+	}
+
+	private TreeNode mergeRecEff(TreeNode root1, TreeNode root2) {
+		if (root1 == null) {
+			return root2;
+		}
+		if (root2 == null) {
+			return root1;
+		}
+		root1.data += root2.data;
+		root1.left = mergeRecEff(root1.left, root2.left);
+		root1.right = mergeRecEff(root1.right, root2.right);
+		return root1;
 	}
 
 }
