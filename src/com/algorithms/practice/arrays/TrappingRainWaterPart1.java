@@ -1,5 +1,7 @@
 package com.algorithms.practice.arrays;
 
+import java.util.ArrayDeque;
+
 public class TrappingRainWaterPart1 {
 
 	// Given n non-negative integers representing an elevation map where the width
@@ -34,6 +36,24 @@ public class TrappingRainWaterPart1 {
 		return waterCollected;
 	}
 
+	// efficient solution, using stack.
+	public static int trapStack(int[] height) {
+		int waterTrapped = 0;
+		ArrayDeque<Integer> st = new ArrayDeque<>();
+		for (int i = 0; i < height.length; i++) {
+			while (!st.isEmpty() && height[i] > height[st.peek()]) {
+				int pop = st.pop();
+				if (st.isEmpty()) {
+					break;
+				}
+				int distance = i - st.peek() - 1;
+				waterTrapped += distance * (Math.min(height[i], height[st.peek()]) - height[pop]);
+			}
+			st.push(i);
+		}
+		return waterTrapped;
+	}
+
 	// efficient solution, theta(1) space.
 	public static int trap(int[] height) {
 		int waterCollected = 0;
@@ -66,6 +86,7 @@ public class TrappingRainWaterPart1 {
 		int[] height = { 3, 0, 1, 2, 5 };
 		System.out.println("The amount of water collected is: " + trap(height));
 		System.out.println("The amount of water collected is: " + trapDp(height));
+		System.out.println("The amount of water collected is: " + trapStack(height));
 	}
 
 }

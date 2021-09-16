@@ -2,26 +2,29 @@ package com.algorithms.practice;
 
 public class demo {
 
-	public static void findFrequencies(int[] arr) {
-		int i = 0;
-		while(i < arr.length) {
-			int count = 1;
-			int j = i + 1;
-			while(j < arr.length && arr[j] == arr[i]) {
-				count++;
-				j++;
+	public static boolean isSubarrayWithGivenSum(int[] arr, int sum) {
+		int currSum = 0;
+		int index = 0;
+		for (int i = 0; i < arr.length; i++) {
+			currSum = currSum + arr[i];
+			while (index <= i && currSum > sum) {
+				currSum = currSum - arr[index];
+				index++;
 			}
-			System.out.println(arr[i] + " " + count);
-			i = j;
+			if (currSum == sum) {
+				return true;
+			}
 		}
+		return false;
 	}
-
-	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] arr = { 10, 10, 10, 25, 30, 30 };
-		System.out.println("The frequencies of elements in array are: ");
-		findFrequencies(arr);
+		int[] arr = { 1, 4, 20, 3, 10, 5 };
+		int[] arr1 = { 1, 4, 0, 0, 3, 10, 5 };
+		int[] arr2 = { 2, 4 };
+		System.out.println("Is subarray with given sum: " + isSubarrayWithGivenSum(arr, 33));
+		System.out.println("Is subarray with given sum: " + isSubarrayWithGivenSum(arr1, 7));
+		System.out.println("Is subarray with given sum: " + isSubarrayWithGivenSum(arr2, 3));
 	}
 }
