@@ -92,6 +92,40 @@ public class SortArrayWithThreeTypesOfElements {
 		nums[highRangeIndex] = temp;
 	}
 
+	// efficient solution.
+	public static void threeWayPartition(int nums[], int a, int b) {
+		int i = -1;
+		int temp = 0;
+		int j = nums.length - 1;
+		int index = 0;
+		while (index <= j) {
+			while (j >= 0 && nums[j] > b) {
+				j--;
+			}
+
+			if (j < index) {
+				break;
+			}
+
+			if (nums[index] < a) {
+				i++;
+				temp = nums[i];
+				nums[i] = nums[index];
+				nums[index] = temp;
+			}
+
+			if (nums[index] > b) {
+				temp = nums[j];
+				nums[j] = nums[index];
+				nums[index] = temp;
+			}
+
+			if (nums[index] >= a && nums[index] <= b || index == i) {
+				index++;
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] arr1 = { 0, 1, 2, 2, 1, 0, 1 };
