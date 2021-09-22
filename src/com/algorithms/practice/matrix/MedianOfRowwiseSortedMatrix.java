@@ -113,6 +113,52 @@ public class MedianOfRowwiseSortedMatrix {
 		return i;
 	}
 
+	// efficient solution, different style of implementation.
+	public static int findMedianEfficient1(int[][] matrix) {
+		int minVal = Integer.MAX_VALUE;
+		int maxVal = Integer.MIN_VALUE;
+		int medianElement = 0;
+		int medianPosition = ((matrix.length * matrix[0].length) + 1) / 2;
+		for (int i = 0; i < matrix.length; i++) {
+			minVal = Math.min(minVal, matrix[i][0]);
+			maxVal = Math.max(maxVal, matrix[i][matrix[0].length - 1]);
+		}
+
+		while (minVal <= maxVal) {
+			int midVal = (minVal + maxVal) / 2;
+			int count = binarySearch(matrix, midVal);
+			if (count == medianPosition) {
+				medianElement = midVal;
+				break;
+			}
+			if (count > medianPosition) {
+				maxVal = midVal - 1;
+			} else {
+				minVal = midVal + 1;
+			}
+		}
+		return medianElement;
+	}
+
+	private static int binarySearch(int[][] matrix, int element) {
+		int count = 1;
+		for (int i = 0; i < matrix.length; i++) {
+			int[] arr = matrix[i];
+			int start = 0;
+			int end = arr.length - 1;
+			while (start <= end) {
+				int mid = start + (end - start) / 2;
+				if (arr[mid] < element) {
+					count += mid - start + 1;
+					start = mid + 1;
+				} else {
+					end = mid - 1;
+				}
+			}
+		}
+		return count;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[][] arr = { { 1, 10, 20 }, { 15, 25, 35 }, { 5, 30, 40 } };
