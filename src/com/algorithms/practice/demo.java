@@ -1,5 +1,17 @@
 package com.algorithms.practice;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.algorithms.practice.linkedlist.DoubleNode;
+import com.algorithms.practice.linkedlist.Node;
+
+// class for doing rough work.
+
 public class demo {
 
 	public int inverseMemo(int[] nums, int k) {
@@ -50,69 +62,91 @@ public class demo {
 		return dp[k][0];
 	}
 
-	// efficient solution.
-	public static int findMedianEfficient(int[][] matrix) {
-		int minVal = Integer.MAX_VALUE;
-		int maxVal = Integer.MIN_VALUE;
-		int medianElement = 0;
-		int medianPosition = ((matrix.length * matrix[0].length) + 1) / 2;
-		for (int i = 0; i < matrix.length; i++) {
-			minVal = Math.min(minVal, matrix[i][0]);
-			maxVal = Math.max(maxVal, matrix[i][matrix[0].length - 1]);
+	public static void countDistinctElements(int[] nums, int k) {
+		Map<Integer, Integer> hmap = new HashMap<>();
+		for (int i = 0; i < k; i++) {
+			hmap.put(nums[i], hmap.getOrDefault(nums[i], 0) + 1);
 		}
-
-		while (minVal <= maxVal) {
-			int midVal = (minVal + maxVal) / 2;
-			int count = binarySearch(matrix, midVal);
-			if (count == medianPosition) {
-				medianElement = midVal;
-				break;
-			}
-			if (count > medianPosition) {
-				maxVal = midVal - 1;
+		System.out.print(hmap.size() + " ");
+		for (int i = k; i < nums.length; i++) {
+			if (hmap.get(nums[i - k]) == 1) {
+				hmap.remove(nums[i - k]);
 			} else {
-				minVal = midVal + 1;
+				hmap.put(nums[i - k], hmap.get(nums[i - k]) - 1);
 			}
+			hmap.put(nums[i], hmap.getOrDefault(nums[i], 0) + 1);
+			System.out.print(hmap.size() + " ");
 		}
-		return medianElement;
 	}
 
-	private static int binarySearch(int[][] matrix, int element) {
-		int count = 1;
-		for (int i = 0; i < matrix.length; i++) {
-			int[] arr = matrix[i];
-			int start = 0;
-			int end = arr.length - 1;
-			while (start <= end) {
-				int mid = start + (end - start) / 2;
-				if (arr[mid] < element) {
-					count += mid - start + 1;
-					start = mid + 1;
-				} else {
-					end = mid - 1;
-				}
+	public int abc(List<Integer> counters) {
+		int oper = 0;
+		int maxVal = Integer.MIN_VALUE;
+		Set<Integer> hset = new HashSet<>();
+		int maxIndex = -1;
+		for (int i = 0; i < counters.size(); i++) {
+			hset.add(counters.get(i));
+			if (counters.get(i) > maxVal) {
+				maxVal = counters.get(i);
+				maxIndex = i;
 			}
 		}
-		return count;
+
+		while (hset.size() > 1) {
+			oper++;
+			hset = new HashSet<>();
+			int currMax = maxVal;
+			int currIndex = maxIndex;
+			for (int i = 0; i < counters.size(); i++) {
+				if (i != maxIndex) {
+					int temp = counters.get(i);
+					counters.set(i, temp + 1);
+				}
+				if (counters.get(i) > currMax) {
+					currMax = counters.get(i);
+					currIndex = i;
+				}
+				hset.add(counters.get(i));
+			}
+			maxVal = currMax;
+			maxIndex = currIndex;
+
+		}
+		
+		
+		return oper;
+
+	}
+	
+	public static DoubleNode reverse(DoubleNode head) {
+		if(head == null || head.next == null) {
+			return head;
+		}
+		DoubleNode prev = null;
+		DoubleNode curr = head;
+		while(curr!= null) {
+			DoubleNode temp = curr.next;
+			curr.next = prev;
+			if(prev != null) {
+				prev.prev = curr;
+			}
+			prev = curr;
+			curr = temp;
+		}
+		return prev;
 	}
 
 	public static void main(String[] args) {
-		int[] nums = { 6, 5, 4, 3, 2, 1 };
-		int[] nums1 = { 5, 5, 2, 2, 1 };
+		// int[] nums = { 6, 5, 4, 3, 2, 1 };
+		// int[] nums1 = { 5, 5, 2, 2, 1 };
 		demo d = new demo();
-		System.out.println(d.inverseMemo(nums, 3));
-		System.out.println(d.inverseMemo(nums1, 3));
+		List<Integer> counters = new ArrayList<>();
+		counters.add(3);
+		counters.add(4);
+		counters.add(6);
+		counters.add(6);
+		counters.add(3);
+		System.out.println(d.abc(counters));
 
-		System.out.println(d.inversionTabulation(nums, 3));
-		System.out.println(d.inversionTabulation(nums1, 3));
-
-		System.out.println();
-
-		int[][] arr = { { 1, 10, 20 }, { 15, 25, 35 }, { 5, 30, 40 } };
-		int[][] arr1 = { { 2, 4, 6, 8, 10 }, { 1, 3, 5, 7, 9 }, { 100, 200, 400, 500, 800 } };
-		int[][] arr2 = { { 5, 10, 20, 30, 40 }, { 1, 2, 3, 4, 6 }, { 11, 13, 15, 17, 19 } };
-		System.out.println("(Efficient) The median of this matrix is: " + findMedianEfficient(arr));
-		System.out.println("(Efficient) The median of this matrix is: " + findMedianEfficient(arr1));
-		System.out.println("(Efficient) The median of this matrix is: " + findMedianEfficient(arr2));
 	}
 }

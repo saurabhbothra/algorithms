@@ -44,6 +44,25 @@ public class DoublyLinkedList {
 		return prev.prev;
 	}
 
+	// Reverse a doubly linked list.
+	public static DoubleNode reverse2(DoubleNode head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		DoubleNode prev = null;
+		DoubleNode curr = head;
+		while (curr != null) {
+			DoubleNode temp = curr.next;
+			curr.next = prev;
+			if (prev != null) {
+				prev.prev = curr;
+			}
+			prev = curr;
+			curr = temp;
+		}
+		return prev;
+	}
+
 	// Insert at end of a doubly linked list.
 	public static DoubleNode insertAtEnd(DoubleNode head, int data) {
 		DoubleNode node = new DoubleNode(data);
@@ -87,6 +106,9 @@ public class DoublyLinkedList {
 		head = insertAtEnd(head, 20);
 		head = insertAtEnd(head, 10);
 		head = insertAtEnd(head, 5);
+		head = insertAtEnd(head, 40);
+		display(head);
+		head = reverse2(head);
 		display(head);
 	}
 
