@@ -94,4 +94,42 @@ public class CloneALinkedListUsingRandomPointer {
 		return newHead;
 	}
 
+	// better efficient implementation.
+	public RandomNode copyRandomList(RandomNode head) {
+		if (head == null) {
+			return null;
+		}
+		// add new nodes after all old nodes.
+		RandomNode curr = head;
+		while (curr != null) {
+			RandomNode temp = curr.next;
+			curr.next = new RandomNode(curr.val);
+			curr.next.next = temp;
+			curr = temp;
+		}
+
+		// link random pointers of new nodes to each other.
+		curr = head;
+		while (curr != null) {
+			RandomNode temp = curr.next.next;
+			if (curr.random != null) {
+				curr.next.random = curr.random.next;
+			}
+			curr = temp;
+		}
+		RandomNode newHead = head.next;
+		// link new nodes and form back the original list.
+		curr = head;
+		while (curr.next.next != null) {
+			RandomNode temp = curr.next.next;
+			curr.next.next = temp.next;
+			curr.next = temp;
+			curr = temp;
+		}
+
+		curr.next.next = null;
+		curr.next = null;
+		return newHead;
+	}
+
 }
