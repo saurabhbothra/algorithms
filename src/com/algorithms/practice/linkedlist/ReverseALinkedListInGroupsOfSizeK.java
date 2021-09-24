@@ -70,6 +70,7 @@ public class ReverseALinkedListInGroupsOfSizeK {
 		head = LinkedList.insertAtBegin(head, 10);
 		head = LinkedList.insertAtBegin(head, 5);
 		head = LinkedList.insertAtBegin(head, 1);
+		head = LinkedList.insertAtBegin(head, 2);
 		System.out.println("The linked list before reverse is:");
 		LinkedList.display(head);
 		head = reverseKGroups(head, 3);

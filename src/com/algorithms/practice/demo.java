@@ -135,6 +135,53 @@ public class demo {
 		}
 		return prev;
 	}
+	
+	// efficient solution, recursive.
+	public static Node reverseKGroups(Node head, int k) {
+		if(head == null) {
+			return null;
+		}
+		Node prev = null;
+		Node tail = null;
+		Node tempHead = null;
+		Node tempTail = null;
+		Node curr = head;
+		int count = 0;
+		while(curr != null) {
+			if(count == k) {
+				if(prev == null) {
+					prev = tempHead;
+					tail = tempTail;
+				} else {
+					tail.next = tempHead;
+					tail = tempTail;
+				}
+				count = 0;
+				tempHead = null;
+				tempTail = null;
+			}
+			Node fut = curr.next;
+			if(tempHead == null) {
+				tempHead = curr;
+				tempTail = curr;
+				tempTail.next = null;
+			} else {
+				curr.next = tempHead;
+				tempHead = curr;
+			}
+			curr = fut;
+			count++;
+		}
+		
+		if(prev == null) {
+			prev = tempHead;
+			tail = tempTail;
+		} else {
+			tail.next = tempHead;
+			tail = tempTail;
+		}
+		return prev;
+	}
 
 	public static void main(String[] args) {
 		// int[] nums = { 6, 5, 4, 3, 2, 1 };
