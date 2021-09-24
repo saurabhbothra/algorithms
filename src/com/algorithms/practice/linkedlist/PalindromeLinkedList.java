@@ -61,6 +61,38 @@ public class PalindromeLinkedList {
 		return true;
 	}
 
+	// efficient solution 2.
+	public static boolean isPalindrome2(Node head) {
+		if (head.next == null) {
+			return true;
+		}
+		Node fast = head;
+		Node slow = head;
+		Node prev = null;
+		while (fast != null && fast.next != null) {
+			fast = fast.next.next;
+			Node temp = slow.next;
+			slow.next = prev;
+			prev = slow;
+			slow = temp;
+		}
+		if (fast != null) {
+			slow = slow.next;
+		}
+		while (prev != null && slow != null) {
+			if (prev.data != slow.data) {
+				return false;
+			}
+			prev = prev.next;
+			slow = slow.next;
+		}
+
+		if (prev != null || slow != null) {
+			return false;
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Node head = LinkedList.insertAtBegin(null, 1);
