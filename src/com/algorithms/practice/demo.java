@@ -142,44 +142,20 @@ public class demo {
 			return null;
 		}
 		Node prev = null;
-		Node tail = null;
-		Node tempHead = null;
-		Node tempTail = null;
 		Node curr = head;
+		Node tail = null;
 		int count = 0;
-		while(curr != null) {
-			if(count == k) {
-				if(prev == null) {
-					prev = tempHead;
-					tail = tempTail;
-				} else {
-					tail.next = tempHead;
-					tail = tempTail;
-				}
-				count = 0;
-				tempHead = null;
-				tempTail = null;
+		while(count < k) {
+			Node temp = curr.next;
+			if(tail == null) {
+				tail = curr;
 			}
-			Node fut = curr.next;
-			if(tempHead == null) {
-				tempHead = curr;
-				tempTail = curr;
-				tempTail.next = null;
-			} else {
-				curr.next = tempHead;
-				tempHead = curr;
-			}
-			curr = fut;
+			curr.next = prev;
+			prev = curr;
+			curr = temp;
 			count++;
 		}
-		
-		if(prev == null) {
-			prev = tempHead;
-			tail = tempTail;
-		} else {
-			tail.next = tempHead;
-			tail = tempTail;
-		}
+		tail.next = reverseKGroups(curr, k);
 		return prev;
 	}
 
