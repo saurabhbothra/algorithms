@@ -204,18 +204,63 @@ public class demo {
 		}
 		System.out.println();
 	}
+	
+	// efficient solution.
+	public static String infoxToPrefix(String s) {
+		if(s == null || s.equals("")) 
+			return s;
+		StringBuilder sb = new StringBuilder();
+		ArrayDeque<Character> st = new ArrayDeque<>();
+		for(int i = s.length() - 1; i >= 0; i--) {
+			char ch = s.charAt(i);
+			int prec = precedence(ch);
+			if(prec == -1) {
+				sb.append(ch);
+			} else if(ch == ')') {
+				st.push(ch);
+			} else if(ch == '(') {
+				while(!st.isEmpty() && st.peek() != ')') {
+					sb.append(st.pop());
+				}
+				st.pop();
+			} else {
+				while(!st.isEmpty() && precedence(st.peek()) > prec) {
+					sb.append(st.pop());
+				}
+				st.push(ch);
+			}
+		}
+		while(!st.isEmpty()) {
+			sb.append(st.pop());
+		}
+		sb.reverse();
+		return sb.toString();
+	}
+
+	// helper method to find precedence of a operator.
+	public static int precedence(char ch) {
+		switch (ch) {
+		case '(':
+		case ')':
+			return 0;
+		case '+':
+		case '-':
+			return 1;
+		case '/':
+		case '*':
+			return 2;
+		case '^':
+			return 3;
+		}
+		return -1;
+	}
+
 
 	public static void main(String[] args) {
-		int[] arr = { 15, 10, 18, 12, 4, 6, 2, 8 };
-		int[] arr1 = { 8, 10, 12 };
-		int[] arr2 = { 12, 10, 8 };
-		System.out.println("The previous greater element for every element is:");
-		prevGreaterElement(arr);
-		System.out.println();
-		prevGreaterElement(arr1);
-		System.out.println();
-		prevGreaterElement(arr2);
-		System.out.println();
+		System.out.println("The prefix expression for given infix string is: " + infoxToPrefix("a*b+c/d"));
+		System.out.println("The prefix expression for given infix string is: " + infoxToPrefix("(a-b/c)*(a/k-l)"));
+		System.out.println("The prefix expression for given infix string is: " + infoxToPrefix("x+y/z-w*u"));
+		System.out.println("The prefix expression for given infix string is: " + infoxToPrefix("(x+y)*(z+w)"));
 
 	}
 }
