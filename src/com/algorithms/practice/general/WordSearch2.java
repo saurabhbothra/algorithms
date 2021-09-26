@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.algorithms.practice.trie.TrieNode;
+
 public class WordSearch2 {
 
 	// Given an m x n board of characters and a list of strings words, return all

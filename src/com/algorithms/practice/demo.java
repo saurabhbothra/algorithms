@@ -1,6 +1,8 @@
 package com.algorithms.practice;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -158,18 +160,54 @@ public class demo {
 		tail.next = reverseKGroups(curr, k);
 		return prev;
 	}
+	
+	public static int[] meandering(int[] nums) {
+		Arrays.sort(nums);
+		int[] result = new int[nums.length];
+		int i = 0;
+		int j = nums.length - 1;
+		int index = 0;
+		boolean flag = true;
+		while(i <= j) {
+			if(flag) {
+				result[index] = nums[j];
+				j--;
+				flag = false;
+			} else {
+				result[index] = nums[i];
+				i++;
+				flag = true;
+			}
+			index++;
+		}
+		return result;
+	}
+	
+	// efficient solution.
+	public static void prevGreaterElement(int[] arr) {
+		if (arr.length == 0) {
+			System.out.print("Array is empty.");
+			return;
+		}
+		ArrayDeque<Integer> st = new ArrayDeque<>();
+		System.out.print(-1 + " ");
+		st.push(arr[0]);
+		for (int i = 1; i < arr.length; i++) {
+			while (!st.isEmpty() && st.peek() < arr[i]) {
+				st.pop();
+			}
+			if (st.isEmpty()) {
+				System.out.print(-1 + " ");
+			} else {
+				System.out.print(st.peek() + " ");
+			}
+			st.push(arr[i]);
+		}
+	}
 
 	public static void main(String[] args) {
-		// int[] nums = { 6, 5, 4, 3, 2, 1 };
-		// int[] nums1 = { 5, 5, 2, 2, 1 };
-		demo d = new demo();
-		List<Integer> counters = new ArrayList<>();
-		counters.add(3);
-		counters.add(4);
-		counters.add(6);
-		counters.add(6);
-		counters.add(3);
-		System.out.println(d.abc(counters));
+		int[] nums = { -1, 1, 2, 3, -5, 5 };
+		System.out.println(Arrays.toString(meandering(nums)));
 
 	}
 }
