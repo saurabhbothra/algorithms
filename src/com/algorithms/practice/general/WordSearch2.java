@@ -32,7 +32,7 @@ public class WordSearch2 {
 					}
 				}
 				if (wordFound) {
-					break;
+					break; 
 				}
 			}
 		}
