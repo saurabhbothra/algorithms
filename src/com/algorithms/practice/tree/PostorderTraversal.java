@@ -31,7 +31,7 @@ public class PostorderTraversal {
 		TreeNode curr = root;
 		while (!st.isEmpty()) {
 			TreeNode poppedNode = st.pop();
-			result.add(poppedNode.val);
+			result.add(poppedNode.data);
 			if (poppedNode.left != null) {
 				st.push(poppedNode.left);
 			}
