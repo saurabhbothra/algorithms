@@ -1,5 +1,7 @@
 package com.algorithms.practice.tree;
 
+import java.util.ArrayDeque;
+
 public class ChildrenSumProperty {
 
 	// Children Sum Property is a property in which the sum of values of the left
@@ -31,6 +33,33 @@ public class ChildrenSumProperty {
 			return 1;
 		}
 		return 0;
+	}
+
+	// iterative solution.
+	public static int isSumPropertyIter(TreeNode root) {
+		ArrayDeque<TreeNode> q = new ArrayDeque<>();
+		q.add(root);
+		while (!q.isEmpty()) {
+			TreeNode poppedNode = q.poll();
+			if (poppedNode.left == null && poppedNode.right == null) {
+				continue;
+			}
+			int sum = 0;
+			if (poppedNode.left != null) {
+				sum += poppedNode.left.data;
+				q.offer(poppedNode.left);
+			}
+
+			if (poppedNode.right != null) {
+				sum += poppedNode.right.data;
+				q.offer(poppedNode.right);
+			}
+
+			if (sum != poppedNode.data) {
+				return 0;
+			}
+		}
+		return 1;
 	}
 
 }
