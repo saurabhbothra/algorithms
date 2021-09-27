@@ -28,7 +28,6 @@ public class PostorderTraversal {
 		}
 		ArrayDeque<TreeNode> st = new ArrayDeque<>();
 		st.push(root);
-		TreeNode curr = root;
 		while (!st.isEmpty()) {
 			TreeNode poppedNode = st.pop();
 			result.add(poppedNode.data);
