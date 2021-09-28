@@ -1,7 +1,10 @@
 package com.algorithms.practice.tree;
 
+import java.util.ArrayDeque;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 
 public class LevelOrderSerializeAndDeserializeABinaryTree {
 
@@ -19,26 +22,37 @@ public class LevelOrderSerializeAndDeserializeABinaryTree {
 
 	// Encodes a tree to a single string.
 	public String serialize(TreeNode root) {
-		StringBuilder serializedString = new StringBuilder();
 		if (root == null) {
 			return "";
 		}
-		Queue<TreeNode> q = new LinkedList<>();
+		TreeNode dummy = new TreeNode(-1);
+		StringBuilder sb = new StringBuilder();
+		Set<TreeNode> hset = new HashSet<>();
+		ArrayDeque<TreeNode> q = new ArrayDeque<>();
 		q.add(root);
 		while (!q.isEmpty()) {
-			int count = q.size();
-			for (int i = 0; i < count; i++) {
+			int size = q.size();
+			hset = new HashSet<>();
+			for (int i = 0; i < size; i++) {
 				TreeNode poppedNode = q.poll();
-				if (poppedNode == null) {
-					serializedString.append("null,");
+				if (poppedNode == dummy) {
+					sb.append("null,");
 					continue;
+				} else {
+					sb.append(poppedNode.data + ",");
 				}
-				serializedString.append(poppedNode.data + ",");
-				q.add(poppedNode.left);
-				q.add(poppedNode.right);
+				TreeNode left = (poppedNode.left == null) ? dummy : poppedNode.left;
+				TreeNode right = (poppedNode.right == null) ? dummy : poppedNode.right;
+				q.offer(left);
+				q.offer(right);
+				hset.add(left);
+				hset.add(right);
+			}
+			if (hset.size() == 1 && hset.contains(dummy)) {
+				break;
 			}
 		}
-		return serializedString.toString();
+		return sb.toString();
 	}
 
 	// Decodes your encoded data to tree.
@@ -46,24 +60,23 @@ public class LevelOrderSerializeAndDeserializeABinaryTree {
 		if (data.equals("")) {
 			return null;
 		}
-		data = data.substring(0, data.length() - 1);
-		String[] sList = data.split(",");
-		Queue<TreeNode> q = new LinkedList<>(); 
-		TreeNode root = new TreeNode(Integer.parseInt(sList[0]));
+		String[] nodes = data.split(",");
+		TreeNode root = new TreeNode(Integer.parseInt(nodes[0]));
+		ArrayDeque<TreeNode> q = new ArrayDeque<>();
 		q.add(root);
-		for (int i = 1; i < sList.length; i++) {
-			TreeNode poppedNode = q.poll();
-			if (!sList[i].equals("null")) {
-				TreeNode leftNode = new TreeNode(Integer.parseInt(sList[i]));
-				poppedNode.left = leftNode;
-				q.add(leftNode);
+		int i = 1;
+		while (i < nodes.length) {
+			TreeNode node = q.poll();
+			if (!nodes[i].equals("null")) {
+				node.left = new TreeNode(Integer.parseInt(nodes[i]));
+				q.offer(node.left);
 			}
 			i++;
-			if (!sList[i].equals("null")) {
-				TreeNode rightNode = new TreeNode(Integer.parseInt(sList[i]));
-				poppedNode.right = rightNode;
-				q.add(rightNode);
+			if (!nodes[i].equals("null")) {
+				node.right = new TreeNode(Integer.parseInt(nodes[i]));
+				q.offer(node.right);
 			}
+			i++;
 		}
 		return root;
 	}
