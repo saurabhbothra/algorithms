@@ -20,52 +20,44 @@ public class TicTacToe {
 
 	// Follow-up: Could you do better than O(n2) per move() operation?
 
-	public int[] player1Rows;
-	public int[] player2Rows;
-	public int[] player1Cols;
-	public int[] player2Cols;
-	public int diag1;
-	public int diag2;
-	public int antiDiag1;
-	public int antiDiag2;
+	public int[] playerRows;
+	public int[] playerCols;
+	public int diag;
+	public int antiDiag;
 	public int n;
 
 	public TicTacToe(int n) {
-		this.player1Rows = new int[n];
-		this.player2Rows = new int[n];
-		this.player1Cols = new int[n];
-		this.player2Cols = new int[n];
-		this.diag1 = 0;
-		this.diag2 = 0;
-		this.antiDiag1 = 0;
-		this.antiDiag2 = 0;
+		this.playerRows = new int[n];
+		this.playerCols = new int[n];
+		this.diag = 0;
+		this.antiDiag = 0;
 		this.n = n;
 	}
 
 	public int move(int row, int col, int player) {
 		int result = 0;
 		if (player == 1) {
-			player1Rows[row] += 1;
-			player1Cols[col] += 1;
+			playerRows[row] += 1;
+			playerCols[col] += 1;
 			if (row == col) {
-				diag1++;
+				diag++;
 			}
 			if (col == n - row - 1) {
-				antiDiag1++;
+				antiDiag++;
 			}
-			if (player1Rows[row] == n || player1Cols[col] == n || diag1 == n || antiDiag1 == n) {
+			if (playerRows[row] == n || playerCols[col] == n || diag == n || antiDiag == n) {
 				result = 1;
 			}
 		} else {
-			player2Rows[row] += 1;
-			player2Cols[col] += 1;
+			playerRows[row] -= 1;
+			playerCols[col] -= 1;
 			if (row == col) {
-				diag2++;
+				diag--;
 			}
 			if (col == n - row - 1) {
-				antiDiag2++;
+				antiDiag--;
 			}
-			if (player2Rows[row] == n || player2Cols[col] == n || diag2 == n || antiDiag2 == n) {
+			if (playerRows[row] == -n || playerCols[col] == -n || diag == -n || antiDiag == -n) {
 				result = 2;
 			}
 		}
