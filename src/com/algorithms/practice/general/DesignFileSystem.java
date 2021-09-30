@@ -24,6 +24,8 @@ public class DesignFileSystem {
 		this.root = new HTrieNode();
 	}
 
+	// Creates a new path and associates a value to it if possible and returns true.
+	// Returns false if the path already exists or its parent path doesn't exist.
 	public boolean createPath(String path, int value) {
 		if (path.equals("") || path.equals("/")) {
 			return false;
@@ -46,6 +48,8 @@ public class DesignFileSystem {
 		return true;
 	}
 
+	// Returns the value associated with path or returns -1 if the path doesn't
+	// exist.
 	public int get(String path) {
 		if (path.equals("") || path.equals("/")) {
 			return -1;
