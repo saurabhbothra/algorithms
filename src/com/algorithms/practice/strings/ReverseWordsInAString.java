@@ -66,6 +66,34 @@ public class ReverseWordsInAString {
 		return sb.toString();
 	}
 
+	// efficient implementation 2.
+	public String reverseWords(String s) {
+		StringBuilder sb = new StringBuilder();
+		int i = 0;
+		int j = s.length() - 1;
+		while (s.charAt(i) == ' ') {
+			i++;
+		}
+		while (s.charAt(j) == ' ') {
+			j--;
+		}
+		while (j >= i) {
+			int end = j;
+			while (j >= i && s.charAt(j) != ' ') {
+				j--;
+			}
+			sb.append(s.substring(j + 1, end + 1));
+			if (j < i) {
+				break;
+			}
+			while (s.charAt(j) == ' ') {
+				j--;
+			}
+			sb.append(' ');
+		}
+		return sb.toString();
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "  hello world  ";
