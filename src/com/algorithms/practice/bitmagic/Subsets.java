@@ -32,7 +32,7 @@ public class Subsets {
     public static List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> output = new ArrayList<>();
         output.add(new ArrayList<>());
-        int subsets = (int) Math.pow(2, nums.length);
+        int subsets = (1 << nums.length);
         for(int i = 1; i < subsets; i++) {
             List<Integer> positions = getSetBitPositions(i);
             List<Integer> solution = new ArrayList<>();
