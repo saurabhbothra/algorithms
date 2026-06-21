@@ -2,7 +2,7 @@ package com.algorithms.practice.arrays;
 
 public class MaximumDifferenceProblemWithOrder {
 
-	// Given an array of integers, we need to find maximum value of arr[j] - arr[i]
+	// LC: 121: Given an array of integers, we need to find maximum value of arr[j] - arr[i]
 	// such that j > i.
 
 	// efficient solution, traversing from left.
