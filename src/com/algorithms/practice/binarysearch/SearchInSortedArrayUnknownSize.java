@@ -50,7 +50,9 @@ public class SearchInSortedArrayUnknownSize {
             return end;
         }
 
-        int start = 0;
+        int start = end / 2;
+        end = end - 1;
+
         while(start <= end) {
             int mid = (start + end) / 2;
             if(reader.get(mid) == target) {
