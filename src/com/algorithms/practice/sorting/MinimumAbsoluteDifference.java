@@ -42,10 +42,14 @@ public class MinimumAbsoluteDifference {
         Arrays.sort(arr);
         int minDiff = Integer.MAX_VALUE;
         for(int i = 1; i < arr.length; i++) {
-            minDiff = Math.min(minDiff, arr[i] - arr[i-1]);
-        }
-        for(int i = 1; i < arr.length; i++) {
             if (minDiff == arr[i] - arr[i-1]) {
+                List<Integer> result = new ArrayList<>();
+                result.add(arr[i-1]);
+                result.add(arr[i]);
+                output.add(result);
+            } else if (minDiff > arr[i] - arr[i-1]) {
+                minDiff = arr[i] - arr[i - 1];
+                output = new ArrayList<>();
                 List<Integer> result = new ArrayList<>();
                 result.add(arr[i-1]);
                 result.add(arr[i]);
